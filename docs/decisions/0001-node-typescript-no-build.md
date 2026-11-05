@@ -1,0 +1,3 @@
+# ADR 0001: Node + TypeScript with native type stripping
+
+**Status:** accepted. **Context:** the backend needs WebSockets, a pure game engine and a Gemini REST client; the author wants maximum testability. **Decision:** Node 22.18+ runs `.ts` directly (no transpile step), code uses only erasable TypeScript syntax, `tsc --noEmit` is the type gate. The engine and policy have zero runtime dependencies, so they run in tests with no `npm install`. **Consequences:** simpler Docker image and CI; imports need `.ts` extensions; enums and parameter properties are forbidden. **Alternatives:** NestJS (more ceremony than the value here), Go (strong, but slower to iterate with the AI contract).

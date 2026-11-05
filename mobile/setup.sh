@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# One-time project setup. Requires Flutter 3.22+ on PATH.
+set -euo pipefail
+cd "$(dirname "$0")"
+flutter create . --project-name darewire --org com.darewire --platforms=android,ios
+dart run tool/patch_platforms.dart
+flutter pub get
+dart run flutter_launcher_icons
+[ -f env.json ] || cp env.example.json env.json
+echo "Done. Edit env.json, then:  flutter run --dart-define-from-file=env.json"

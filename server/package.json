@@ -1,0 +1,29 @@
+{
+  "name": "darewire-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DAREWIRE backend: server-authoritative game engine, AI Director (Gemini), realtime gateway, LiveKit tokens, moderation.",
+  "engines": { "node": ">=22.18.0" },
+  "scripts": {
+    "start": "node src/index.ts",
+    "dev": "node --watch src/index.ts",
+    "test": "node --test \"test/**/*.test.ts\"",
+    "typecheck": "tsc -p . --noEmit",
+    "simulate": "node tools/simulate.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "jose": "^5.9.6",
+    "livekit-server-sdk": "^2.9.7",
+    "pg": "^8.13.1",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "@types/pg": "^8.11.10",
+    "@types/ws": "^8.5.13",
+    "typescript": "^5.7.2"
+  }
+}

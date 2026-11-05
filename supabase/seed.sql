@@ -1,0 +1,2 @@
+-- Optional: promote a user to moderator after they have signed up (replace the uuid).
+-- update public.profiles set role = 'moderator' where id = '00000000-0000-0000-0000-000000000000';

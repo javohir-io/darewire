@@ -1,0 +1,3 @@
+# ADR 0005: Opt-in clips and a Feed
+
+**Context:** a feed of finished dares keeps people in the app between rounds. It also means storing user video, which the first design deliberately avoided. **Decision:** record only with per-run Player consent (default off), only the stage, via LiveKit Egress into a private bucket; offer the clip only after completed/failed rounds; require an explicit Publish; expire unposted files in 24 h; Safety Stop and moderation delete instead of offering. A pure `Recorder` takes events from the engine, so the consent rules are unit-tested with fake egress/storage. **Cost:** storage, egress minutes, and a real moderation burden. See the threat model. **Alternative rejected:** recording everything and filtering later: it inverts consent.

@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "DAREWIRE: phone or emulator (profile, use this to judge speed)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "flutterMode": "profile",
+      "args": ["--dart-define-from-file=env.json"]
+    },
+    {
+      "name": "DAREWIRE: phone or emulator (debug, for development)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "flutterMode": "debug",
+      "args": ["--dart-define-from-file=env.json"]
+    },
+    {
+      "name": "DAREWIRE: phone or emulator (release)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": ["--dart-define-from-file=env.json"]
+    },
+    {
+      "name": "DAREWIRE: Chrome (quick preview, smooth mode)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "deviceId": "chrome",
+      "args": ["--dart-define-from-file=env.json"]
+    }
+  ]
+}
