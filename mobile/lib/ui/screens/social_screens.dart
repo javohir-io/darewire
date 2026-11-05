@@ -239,10 +239,12 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   Future<void> _load({bool quiet = false}) async {
     try {
       final t = await ref.read(apiProvider).thread(widget.chatId);
-      if (mounted) setState(() {
-        _t = t;
-        _error = null;
-      });
+      if (mounted) {
+        setState(() {
+          _t = t;
+          _error = null;
+        });
+      }
     } catch (e) {
       if (mounted && !quiet) setState(() => _error = e);
     }

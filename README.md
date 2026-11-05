@@ -58,54 +58,32 @@ One player goes live on camera. An AI **Director** writes five dares, the audien
 <table>
 <tr>
 <td align="center"><b>Welcome</b></td>
-<td align="center"><b>Birthday screen</b></td>
 <td align="center"><b>Home</b></td>
+<td align="center"><b>Dares feed</b></td>
 </tr>
 <tr>
 <td align="center"><img src="docs/screenshots/01-welcome.jpg" width="250" alt="Welcome"></td>
-<td align="center"><img src="docs/screenshots/02-age.jpg" width="250" alt="Birthday screen"></td>
 <td align="center"><img src="docs/screenshots/03-home.jpg" width="250" alt="Home"></td>
-</tr>
-</table>
-
-<table>
-<tr>
-<td align="center"><b>Home, further down</b></td>
-<td align="center"><b>Dares feed</b></td>
-<td align="center"><b>Live round</b></td>
-</tr>
-<tr>
-<td align="center"><img src="docs/screenshots/04-home-more.jpg" width="250" alt="Home, further down"></td>
 <td align="center"><img src="docs/screenshots/05-dares.jpg" width="250" alt="Dares feed"></td>
-<td align="center"><img src="docs/screenshots/06-live-vote.jpg" width="250" alt="Live round"></td>
 </tr>
 </table>
 
 <table>
 <tr>
-<td align="center"><b>Round complete</b></td>
+<td align="center"><b>Live round</b></td>
 <td align="center"><b>Cipher, the AI companion</b></td>
-<td align="center"><b>Duels</b></td>
+<td align="center"><b>Profile</b></td>
 </tr>
 <tr>
-<td align="center"><img src="docs/screenshots/07-round-complete.jpg" width="250" alt="Round complete"></td>
+<td align="center"><img src="docs/screenshots/06-live-vote.jpg" width="250" alt="Live round"></td>
 <td align="center"><img src="docs/screenshots/08-cipher.jpg" width="250" alt="Cipher, the AI companion"></td>
-<td align="center"><img src="docs/screenshots/09-duels.jpg" width="250" alt="Duels"></td>
+<td align="center"><img src="docs/screenshots/11-profile.jpg" width="250" alt="Profile"></td>
 </tr>
 </table>
 
-<table>
-<tr>
-<td align="center"><b>Rewards</b></td>
-<td align="center"><b>Profile</b></td>
-<td align="center"><b>Settings</b></td>
-</tr>
-<tr>
-<td align="center"><img src="docs/screenshots/10-rewards.jpg" width="250" alt="Rewards"></td>
-<td align="center"><img src="docs/screenshots/11-profile.jpg" width="250" alt="Profile"></td>
-<td align="center"><img src="docs/screenshots/12-settings.jpg" width="250" alt="Settings"></td>
-</tr>
-</table>
+### Themes
+
+![DAREWIRE has 4 themes: Neon, Aurora, Crimson and Spectrum](docs/images/themes.png)
 
 ## Architecture
 

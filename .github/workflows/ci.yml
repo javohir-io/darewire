@@ -19,6 +19,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with: { channel: stable }
       - run: flutter create . --project-name darewire --platforms=android
+      - run: rm -f test/widget_test.dart   # the sample test that `flutter create` adds refers to a MyApp this app does not have
       - run: flutter pub get
       - run: flutter analyze
       - run: flutter test

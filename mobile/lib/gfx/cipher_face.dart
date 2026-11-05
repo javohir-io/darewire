@@ -179,7 +179,7 @@ class _OrbPainter extends CustomPainter {
     final bob = math.sin(t * (1.0 + feel.pulse * 0.5)) * s * 0.012 - (feel.bounce > 0 ? (math.sin(t * feel.pulse * 3).abs()) * s * feel.bounce : 0);
     final sx = (1 + 0.03 * breath + 0.16 * squish) * (2 - feel.squash).clamp(0.95, 1.08);
     final sy = (1 - 0.03 * breath - 0.16 * squish) * feel.squash;
-    final R0 = s * 0.31;
+    final r0 = s * 0.31;
     final c0 = Offset(s / 2 + look.dx * s * 0.025, s * 0.52 + look.dy * s * 0.015);
 
     final hi = _mood(pal.primaryHi);
@@ -197,7 +197,7 @@ class _OrbPainter extends CustomPainter {
     canvas.translate(-c0.dx, -s * 0.9 + bob);
 
     // orbit ring, back half (behind the body)
-    final ringRect = Rect.fromCenter(center: c0, width: R0 * 2.75, height: R0 * 0.85);
+    final ringRect = Rect.fromCenter(center: c0, width: r0 * 2.75, height: r0 * 0.85);
     final ringPaint = Paint()..style = PaintingStyle.stroke..strokeWidth = s * 0.012..color = _mood(pal.edgeB).withAlpha(150);
     canvas.save();
     canvas.translate(c0.dx, c0.dy);
@@ -216,7 +216,7 @@ class _OrbPainter extends CustomPainter {
     canvas.restore();
 
     // outer aura
-    canvas.drawCircle(c0, R0 * 1.25, Paint()..shader = RadialGradient(colors: [glowCol.withAlpha((50 + 70 * feel.glow).round()), Colors.transparent]).createShader(Rect.fromCircle(center: c0, radius: R0 * 1.25)));
+    canvas.drawCircle(c0, r0 * 1.25, Paint()..shader = RadialGradient(colors: [glowCol.withAlpha((50 + 70 * feel.glow).round()), Colors.transparent]).createShader(Rect.fromCircle(center: c0, radius: r0 * 1.25)));
 
     // the body: a sphere whose surface ripples slowly
     final path = Path();
@@ -224,26 +224,26 @@ class _OrbPainter extends CustomPainter {
     for (var i = 0; i <= n; i++) {
       final a = i / n * math.pi * 2;
       final w = feel.wobble * (math.sin(a * 3 + t * 1.3 * feel.pulse) * 0.6 + math.sin(a * 5 - t * 0.9 * feel.pulse) * 0.4 + (talk ? math.sin(a * 4 + t * 14) * 0.5 : 0));
-      final r = R0 * (1 + w);
+      final r = r0 * (1 + w);
       final p = Offset(c0.dx + math.cos(a) * r, c0.dy + math.sin(a) * r);
       i == 0 ? path.moveTo(p.dx, p.dy) : path.lineTo(p.dx, p.dy);
     }
     path.close();
-    final light = Offset(c0.dx - R0 * (0.38 - look.dx * 0.15), c0.dy - R0 * (0.46 - look.dy * 0.15));
+    final light = Offset(c0.dx - r0 * (0.38 - look.dx * 0.15), c0.dy - r0 * (0.46 - look.dy * 0.15));
     canvas.drawShadow(path, mid.withAlpha(200), s * 0.03, true);
-    canvas.drawPath(path, Paint()..shader = RadialGradient(center: Alignment.center, radius: 1.0, colors: [hi, mid, deep], stops: const [0, 0.55, 1]).createShader(Rect.fromCircle(center: light, radius: R0 * 1.6)));
+    canvas.drawPath(path, Paint()..shader = RadialGradient(center: Alignment.center, radius: 1.0, colors: [hi, mid, deep], stops: const [0, 0.55, 1]).createShader(Rect.fromCircle(center: light, radius: r0 * 1.6)));
 
     canvas.save();
     canvas.clipPath(path);
     // inner glowing core that pulses
-    final coreR = R0 * (0.42 + 0.08 * breath + (talk ? 0.06 * math.sin(t * 14) : 0));
-    canvas.drawCircle(c0.translate(look.dx * R0 * 0.1, R0 * 0.12), coreR * 1.8, Paint()..shader = RadialGradient(colors: [glowCol.withAlpha((90 + 150 * feel.glow).round()), Colors.transparent]).createShader(Rect.fromCircle(center: c0, radius: coreR * 1.8)));
-    canvas.drawCircle(c0.translate(look.dx * R0 * 0.1, R0 * 0.12), coreR * 0.42, Paint()..color = Colors.white.withAlpha((120 + 110 * feel.glow).round())..maskFilter = MaskFilter.blur(BlurStyle.normal, R0 * 0.18));
+    final coreR = r0 * (0.42 + 0.08 * breath + (talk ? 0.06 * math.sin(t * 14) : 0));
+    canvas.drawCircle(c0.translate(look.dx * r0 * 0.1, r0 * 0.12), coreR * 1.8, Paint()..shader = RadialGradient(colors: [glowCol.withAlpha((90 + 150 * feel.glow).round()), Colors.transparent]).createShader(Rect.fromCircle(center: c0, radius: coreR * 1.8)));
+    canvas.drawCircle(c0.translate(look.dx * r0 * 0.1, r0 * 0.12), coreR * 0.42, Paint()..color = Colors.white.withAlpha((120 + 110 * feel.glow).round())..maskFilter = MaskFilter.blur(BlurStyle.normal, r0 * 0.18));
     // fresnel rim light along the lower right
-    canvas.drawCircle(c0, R0, Paint()..style = PaintingStyle.stroke..strokeWidth = R0 * 0.35..shader = SweepGradient(startAngle: 0, endAngle: math.pi * 2, colors: [_mood(pal.edgeB).withAlpha(170), Colors.transparent, Colors.transparent, _mood(pal.edgeB).withAlpha(170)], stops: const [0, 0.25, 0.6, 1], transform: GradientRotation(math.pi * 0.15)).createShader(Rect.fromCircle(center: c0, radius: R0))..maskFilter = MaskFilter.blur(BlurStyle.normal, R0 * 0.18));
+    canvas.drawCircle(c0, r0, Paint()..style = PaintingStyle.stroke..strokeWidth = r0 * 0.35..shader = SweepGradient(startAngle: 0, endAngle: math.pi * 2, colors: [_mood(pal.edgeB).withAlpha(170), Colors.transparent, Colors.transparent, _mood(pal.edgeB).withAlpha(170)], stops: const [0, 0.25, 0.6, 1], transform: GradientRotation(math.pi * 0.15)).createShader(Rect.fromCircle(center: c0, radius: r0))..maskFilter = MaskFilter.blur(BlurStyle.normal, r0 * 0.18));
     // soft top-left sheen and a crisp specular dot
-    canvas.drawOval(Rect.fromCenter(center: light.translate(R0 * 0.1, 0), width: R0 * 0.85, height: R0 * 0.5), Paint()..color = Colors.white.withAlpha(90)..maskFilter = MaskFilter.blur(BlurStyle.normal, R0 * 0.1));
-    canvas.drawCircle(light.translate(-R0 * 0.08, -R0 * 0.04), R0 * 0.07, Paint()..color = Colors.white.withAlpha(230));
+    canvas.drawOval(Rect.fromCenter(center: light.translate(r0 * 0.1, 0), width: r0 * 0.85, height: r0 * 0.5), Paint()..color = Colors.white.withAlpha(90)..maskFilter = MaskFilter.blur(BlurStyle.normal, r0 * 0.1));
+    canvas.drawCircle(light.translate(-r0 * 0.08, -r0 * 0.04), r0 * 0.07, Paint()..color = Colors.white.withAlpha(230));
     canvas.restore();
     canvas.drawPath(path, Paint()..style = PaintingStyle.stroke..strokeWidth = 1.2..color = Colors.white.withAlpha(70));
 
